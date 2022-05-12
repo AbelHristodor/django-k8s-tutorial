@@ -56,8 +56,8 @@ jobs:
         REDIS_HOST=${{ secrets.REDIS_HOST }}
         REDIS_PORT=${{ secrets.REDIS_PORT }}
         EOF
-        kubectl delete ${{env.DJANGO_CONTAINER}}-prod-env
-        kubectl create secret generic ${{env.DJANGO_CONTAINER}}-prod-env --from-env-file=web/.env.prod
+        kubectl delete django-k8s-web-prod-env
+        kubectl create secret generic django-k8s-web-prod-env --from-env-file=web/.env.prod
     - name: Update Deployment image
       run: |
         kubectl set image deployment/${{env.DJANGO_CONTAINER}}-deployment ${{env.DJANGO_CONTAINER}}=registry.digitalocean.com/test-k8s/${{env.DJANGO_CONTAINER}}:${GITHUB_SHA::7}
