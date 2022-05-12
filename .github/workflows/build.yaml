@@ -56,7 +56,7 @@ jobs:
         REDIS_HOST=${{ secrets.REDIS_HOST }}
         REDIS_PORT=${{ secrets.REDIS_PORT }}
         EOF
-        kubectl delete django-k8s-web-prod-env
+        kubectl delete secret django-k8s-web-prod-env
         kubectl create secret generic django-k8s-web-prod-env --from-env-file=web/.env.prod
     - name: Update Deployment image
       run: |
