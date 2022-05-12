@@ -1,4 +1,4 @@
-name: Docker build containers & push to Registry
+name: Docker build containers & push to DO Registry
 
 on:
   workflow_call:
@@ -13,9 +13,7 @@ jobs:
     uses: AbelHristodor/django-k8s-tutorial/.github/workflows/test-django.yaml
   docker_build:
     runs-on: ubuntu-latest
-
     env:
       DJANGO_SECRET_KEY: test-key
-
     steps:
     - uses: actions/checkout@v3
